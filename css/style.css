@@ -1,0 +1,188 @@
+/* VARIAVEIS CSS */
+:root {
+    /* CORES */
+    --cor-primaria-escura: #00296B;
+    --cor-primaria-media: #003F88;
+    --cor-primaria-clara: #00509D;
+    --cor-secundaria-principal: #FDC500;
+    --cor-secundaria-clara: #FFD500;
+    --cor-acerto: #4CAF50;
+    --cor-erro: #F44336;
+    --cor-fundo-geral: #f0f0f0;
+    --cor-texto-claro: #FFFFFF;
+    --cor-texto-escuro: #333333;
+
+    /* FONTES */
+    --fonte-principal: 'Inter', sans-serif;
+    --fonte-titulo: 'Chakra Petch', sans-serif;
+
+    /* ESPAÇAMENTOS E SOMBRAS */
+    --padding-container: 2rem;
+    --borda-radius: 12px;
+    --sombra-box: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* CSS RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-fundo-geral);
+    color: var(--cor-texto-escuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Garante padding em telas pequenas */
+}
+
+h1, h2 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-primaria-escura);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+/* ESTILO GERAL DOS COMPONENTES */
+
+/* CONTAINER PRINCIPAL DO QUIZ (CARD) */
+.container {
+    background-color: var(--cor-texto-claro);
+    padding: var(--padding-container);
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra-box);
+    width: 100%;
+    max-width: 550px; /* LIMITA O TAMANHO A TELAS GRANDES */
+    text-align: center;
+}
+
+/* TITULO DE SEÇÃO E CABEÇALHOS */
+header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--cor-secundaria-principal);
+}
+
+/* BOTÕES PADRÃO (USADOS EM INICIAR, PROXIMA, REINICIAR) */
+.btn {
+    background-color: var(--cor-primaria-media);
+    color: var(--cor-texto-claro);
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: var(--borda-radius);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1;
+    width: 100%; /* BOTÕES DE AÇÃO PRINCIPAIS OCUPAM 100% DA LARGURA */
+}
+
+.btn:hover:not(:disabled){
+    background-color: var(--cor-primaria-clara);
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* ESTILOS ESPECÍFICOS DO QUIZ */
+/* Container das perguntas */
+.alternativas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas em telas maiores */
+    gap: 15px;
+    margin: 25px 0;
+}
+
+/* Estilo para cada alternativa */
+.alternativa {
+    background-color: var(--cor-fundo-geral);
+    color: var(--cor-texto-escuro);
+    border: 2px solid var(--cor-primaria-escura);
+    padding: 15px;
+    border-radius: var(--borda-radius);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s, border-color 0.2s;
+    font-weight: 600;
+}
+
+.alternativa:hover {
+    background-color: var(--cor-secundaria-clara);
+    border-color: var(--cor-secundaria-principal);
+}
+
+/* Estilos de Feedback (aplicados via JavaScript) */
+.alternativa-correta {
+    background-color: var(--cor-acerto);
+    color: var(--cor-texto-claro);
+    border-color: var(--cor-acerto);
+    animation: pulse 0.5s ease-in-out;
+}
+
+.alternativa-errada {
+    background-color: var(--cor-erro);
+    color: var(--cor-texto-claro);
+    border-color: var(--cor-erro);
+}
+
+/* Desabilitar clique após a resposta */
+.alternativa:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+/* Animação para destaque */
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.02);}
+    100% {transform: scale(1);}
+}
+
+/* ESTILO DA TELA DE RESULTADOS */
+#animacao-resultado {
+    margin: 20px 0;
+    min-height: 100px; /* Espaço reservado para a animação */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* RESPONSIVIDADE  (MEDIA QUERIES) */
+/* Para telas menores que 500px (smartphones na vertical) */
+@media (max-width: 500px){
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    /* As alternativas passam a ocupar uma coluna completa */
+    .alternativas-grid {
+        grid-template-columns: 1fr; /* Muda para uma única coluna */
+        gap: 10px;
+    }
+
+    .alternativa {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+}

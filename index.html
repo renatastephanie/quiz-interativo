@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <main id="main-content" role="main">
+        <section id="inicio-container" class="container">
+            <header>
+                <h1>Quiz de Cultura Pop!</h1>
+            </header>
+            <p>Teste seus conhecimentos com este Quiz</p>
+            <button id="iniciar-quiz-btn" class="btn">Iniciar Quiz</button>
+        </section>
+
+        <section id="quiz-container" class="container" style="display: none;">
+            <header>
+                <h2 id="pergunta-numero">Pergunta X de Y</h2>
+            </header>
+
+            <article class="quiz-pergunta">
+                <p id="pergunta-texto">Texto da Pergunta...</p>
+                <div id="alternativas-container" class="alternativas-gid" role="radiogroup" aria-labelledby="pergunta-texto"></div>
+            </article>
+            <button id="proximo-btn" class="btn" disabled>Proxima Pergunta</button>
+        </section>
+
+        <section id="resultado-container" class="container" style="display: none;">
+            <header>
+                <h2>🎉 Resultados Finais 🎉</h2>
+            </header>
+            <figure id="animacao-resultado">
+                <figcaption>Resultado do Quiz</figcaption>
+            </figure>
+
+            <p>Você Acertou <span id="pontuacao-final">0</span>de<span id="total-perguntas">10</span>perguntas!</p>
+            <button id="reiniciar-btn" class="btn">Tentar Novamente</button>
+        </section>
+    </main>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
