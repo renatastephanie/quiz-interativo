@@ -1,25 +1,23 @@
 /* VARIAVEIS CSS */
 :root {
     /* CORES */
-    --cor-primaria-escura: #00296B;
-    --cor-primaria-media: #003F88;
-    --cor-primaria-clara: #00509D;
-    --cor-secundaria-principal: #FDC500;
-    --cor-secundaria-clara: #FFD500;
-    --cor-acerto: #4CAF50;
-    --cor-erro: #F44336;
-    --cor-fundo-geral: #f0f0f0;
+    --cor-primaria: #6a11cb;
+    --cor-secundaria: #2575fc;
+    --cor-acerto: #28a745;
+    --cor-erro: #dc3545;
+    --cor-fundo-geral: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     --cor-texto-claro: #FFFFFF;
     --cor-texto-escuro: #333333;
+    --cor-fundo-container: rgba(255, 255, 255, 0.95);
 
     /* FONTES */
-    --fonte-principal: 'Inter', sans-serif;
-    --fonte-titulo: 'Chakra Petch', sans-serif;
+    --fonte-principal: 'Poppins', sans-serif;
+    --fonte-titulo: 'Montserrat', sans-serif;
 
     /* ESPAÇAMENTOS E SOMBRAS */
-    --padding-container: 2rem;
-    --borda-radius: 12px;
-    --sombra-box: 0 8px 15px rgba(0, 0, 0, 0.1);
+    --padding-container: 2.5rem;
+    --borda-radius: 15px;
+    --sombra-box: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* CSS RESET E BASE */
@@ -31,95 +29,111 @@
 
 body {
     font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo-geral);
+    background: var(--cor-fundo-geral);
     color: var(--cor-texto-escuro);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px; /* Garante padding em telas pequenas */
+    padding: 20px;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 h1, h2 {
     font-family: var(--fonte-titulo);
-    color: var(--cor-primaria-escura);
-    margin-bottom: 1rem;
+    color: var(--cor-primaria);
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
-/* ESTILO GERAL DOS COMPONENTES */
+/* ANIMAÇÕES */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.03);}
+    100% {transform: scale(1);}
+}
 
 /* CONTAINER PRINCIPAL DO QUIZ (CARD) */
 .container {
-    background-color: var(--cor-texto-claro);
+    background-color: var(--cor-fundo-container);
     padding: var(--padding-container);
     border-radius: var(--borda-radius);
     box-shadow: var(--sombra-box);
     width: 100%;
-    max-width: 550px; /* LIMITA O TAMANHO A TELAS GRANDES */
+    max-width: 600px;
     text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* TITULO DE SEÇÃO E CABEÇALHOS */
 header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--cor-secundaria-principal);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--cor-primaria);
 }
 
-/* BOTÕES PADRÃO (USADOS EM INICIAR, PROXIMA, REINICIAR) */
+/* BOTÕES PADRÃO */
 .btn {
-    background-color: var(--cor-primaria-media);
+    background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
     color: var(--cor-texto-claro);
     border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
+    padding: 12px 25px;
+    margin: 15px 0;
     border-radius: var(--borda-radius);
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
-    transition: background-color 0.3s, transform 0.1;
-    width: 100%; /* BOTÕES DE AÇÃO PRINCIPAIS OCUPAM 100% DA LARGURA */
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn:hover:not(:disabled){
-    background-color: var(--cor-primaria-clara);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn:disabled {
-    background-color: #cccccc;
+    background: #e0e0e0;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
 /* ESTILOS ESPECÍFICOS DO QUIZ */
-/* Container das perguntas */
 .alternativas-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas em telas maiores */
+    grid-template-columns: 1fr;
     gap: 15px;
-    margin: 25px 0;
+    margin: 30px 0;
 }
 
-/* Estilo para cada alternativa */
 .alternativa {
-    background-color: var(--cor-fundo-geral);
+    background-color: #f8f9fa;
     color: var(--cor-texto-escuro);
-    border: 2px solid var(--cor-primaria-escura);
+    border: 2px solid #dee2e6;
     padding: 15px;
     border-radius: var(--borda-radius);
     cursor: pointer;
     text-align: left;
-    transition: background-color 0.2s, border-color 0.2s;
-    font-weight: 600;
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 
 .alternativa:hover {
-    background-color: var(--cor-secundaria-clara);
-    border-color: var(--cor-secundaria-principal);
+    background-color: #e9ecef;
+    border-color: var(--cor-secundaria);
+    transform: translateX(5px);
 }
 
-/* Estilos de Feedback (aplicados via JavaScript) */
 .alternativa-correta {
     background-color: var(--cor-acerto);
     color: var(--cor-texto-claro);
@@ -133,52 +147,37 @@ header {
     border-color: var(--cor-erro);
 }
 
-/* Desabilitar clique após a resposta */
 .alternativa:disabled {
     cursor: default;
-    opacity: 0.7;
-}
-
-/* Animação para destaque */
-@keyframes pulse {
-    0% {transform: scale(1);}
-    50% {transform: scale(1.02);}
-    100% {transform: scale(1);}
+    opacity: 0.8;
 }
 
 /* ESTILO DA TELA DE RESULTADOS */
 #animacao-resultado {
     margin: 20px 0;
-    min-height: 100px; /* Espaço reservado para a animação */
+    min-height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* RESPONSIVIDADE  (MEDIA QUERIES) */
-/* Para telas menores que 500px (smartphones na vertical) */
-@media (max-width: 500px){
+/* RESPONSIVIDADE */
+@media (max-width: 600px){
     .container {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     h2 {
-        font-size: 1.4rem;
-    }
-
-    /* As alternativas passam a ocupar uma coluna completa */
-    .alternativas-grid {
-        grid-template-columns: 1fr; /* Muda para uma única coluna */
-        gap: 10px;
+        font-size: 1.3rem;
     }
 
     .alternativa {
         padding: 12px;
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .btn {

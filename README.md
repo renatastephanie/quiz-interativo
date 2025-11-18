@@ -25,8 +25,7 @@ O tema é Cultura Pop (ou Romântico ❤️, dependendo da sua escolha de API/pe
 * **Controle de Fluxo:** Lógica completa para navegação entre as telas de Início, Quiz e Resultados.
 * **Cálculo de Pontuação:** Acompanha e exibe a pontuação final do usuário.
 * **Feedback Visual:** As alternativas são destacadas em **verde (acerto)** ou **vermelho (erro)** após a seleção.
-* **Design Profissional:** Utiliza **Variáveis CSS** para fácil manutenção de cores e tipografia (Google Fonts: Inter e Chakra Petch).
-* **Animação na Tela de Resultados:** Integração da biblioteca **Lottie Web** para exibir animações vetoriais na conclusão do quiz.
+* **Design Moderno e Atraente:** Utiliza **Variáveis CSS** para fácil manutenção de cores e tipografia (Google Fonts: Poppins e Montserrat), com uma paleta de cores vibrante e animações sutis para uma experiência de usuário aprimorada.
 * **Responsividade:** Layout totalmente adaptável a dispositivos móveis e desktops, garantido por *Media Queries*.
 
 ---
@@ -36,10 +35,9 @@ O tema é Cultura Pop (ou Romântico ❤️, dependendo da sua escolha de API/pe
 | Categoria | Tecnologia | Objetivo |
 | :--- | :--- | :--- |
 | **Estrutura** | HTML5 (Semântico) | Esqueleto da página com foco em acessibilidade. |
-| **Estilo** | CSS3 (Variáveis & Flexbox/Grid) | Design responsivo, paleta de cores (`#00296B`, `#FDC500`). |
+| **Estilo** | CSS3 (Variáveis & Flexbox/Grid) | Design responsivo, paleta de cores moderna (gradiente roxo/azul) e novas fontes (Poppins, Montserrat). |
 | **Lógica** | JavaScript (Vanilla) | Manipulação do DOM, gestão de estado e comunicação com API. |
 | **API** | Open Trivia Database | Fonte gratuita e pública das perguntas. |
-| **Animação** | Lottie Web | Animações de sucesso/erro na tela final. |
 
 ---
 

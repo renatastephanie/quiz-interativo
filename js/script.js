@@ -33,7 +33,6 @@ totalPerguntasSpan.textContent = NUMERO_DE_PERGUNTAS;
  * @param {Array} array 
  * @returns {Array} Array embaralhado
  */
-
 function embaralharArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -46,7 +45,6 @@ function embaralharArray(array) {
  * Busca as perguntas na Open Trivia Database.
  * @returns {Promise<Array>} Array de objetos de pergunta
  */
-
 async function buscarPerguntas() {
     // API Open Trivia Database (usando Filmes/Cultura Pop)
     const url = `https://opentdb.com/api.php?amount=${NUMERO_DE_PERGUNTAS}&category=${CATEGORIA_POP_CULTURA}&type=multiple&encode=base64`;
@@ -74,8 +72,9 @@ async function buscarPerguntas() {
             ...item,
             question: atob(item.question),
             correct_answer: atob(item.correct_answer),
-            incorrect_answers: item.incorrect_answers.map(answer => atob(answer))
+            incorrect_answers: item.incorrect_answers.map(ans => atob(ans))
         }));
+
     } catch (error) {
         console.error("Falha na requisição da API:", error);
         // Retorna um array vazio ou um fallback em caso de erro de rede
@@ -88,7 +87,6 @@ async function buscarPerguntas() {
 /**
  * Exibe a pergunta atual e renderiza as alternativas.
  */
-
 function exibirPergunta() {
     proximoBtn.disabled = true;
     alternativasContainer.innerHTML = '';
@@ -127,7 +125,6 @@ function exibirPergunta() {
  * @param {string} respostaSelecionada - O texto da resposta selecionada.
  * @param {string} respostaCorreta - O texto da resposta correta.
  */
-
 function selecionarAlternativa(botaoClicado, respostaSelecionada, respostaCorreta) {
     const todosBotoes = alternativasContainer.querySelectorAll('.alternativa');
 
@@ -143,7 +140,7 @@ function selecionarAlternativa(botaoClicado, respostaSelecionada, respostaCorret
         // Opcional: Destaca a correta
         todosBotoes.forEach(btn => {
             if (btn.textContent === respostaCorreta) {
-                btn.classList.add('alternativa-correta');
+                btn.classList.add('correta');
             }
         });
     }
@@ -155,7 +152,6 @@ function selecionarAlternativa(botaoClicado, respostaSelecionada, respostaCorret
 /**
  * Mostra a tela principal do Quiz.
  */
-
 function iniciarQuiz() {
     // Esconde a tela de início/resultado e mostra o quiz
     inicioContainer.style.display = 'none';
@@ -173,36 +169,23 @@ function iniciarQuiz() {
 /**
  * Mostra a tela de Resultados Finais.
  */
-
 function mostrarResultado() {
     quizContainer.style.display = 'none';
     resultadoContainer.style.display = 'block';
 
     pontuacaoFinalSpan.textContent = pontuacao;
 
+    // Adicione a lógica de animação aqui (Ex: mudar a cor de fundo, mudar ícone)
     const animacaoElemento = document.getElementById('animacao-resultado');
-    animacaoElemento.innerHTML = ''; // Limpa o conteúdo anterior
-
-    const lottieAnimation = document.createElement('dotlottie-wc');
-    lottieAnimation.autoplay = true;
-    lottieAnimation.loop = true;
-
-    const title = document.createElement('h2');
-
     if (pontuacao >= (NUMERO_DE_PERGUNTAS / 2)) {
         // Se a pontuação for boa (>= 50%)
-        title.textContent = '🏆 Parabéns!';
-        lottieAnimation.src = 'assets/animation.json';
+        animacaoElemento.innerHTML = '<h2>🏆 Parabéns!</h2>'; // Exemplo simples de animação
         animacaoElemento.style.color = 'var(--cor-acerto)';
     } else {
         // Se a pontuação for baixa
-        title.textContent = '😅 Tente outra vez.';
-        lottieAnimation.src = 'assets/Failed.json';
+        animacaoElemento.innerHTML = '<h2>😅 Tente outra vez.</h2>'; // Exemplo simples
         animacaoElemento.style.color = 'var(--cor-erro)';
     }
-
-    animacaoElemento.appendChild(title);
-    animacaoElemento.appendChild(lottieAnimation);
 }
 
 // 4. EVENT LISTENERS E INICIALIZAÇÃO
@@ -247,7 +230,7 @@ reiniciarBtn.addEventListener('click', () => {
         iniciarQuizBtn.disabled = false;
         console.log("Perguntas carregadas com sucesso!");
     } else {
-        iniciarQuizBtn.textContent = 'Erro ao carregar perguntas';
-        console.error("Não foi possivel carregar as perguntas da API");
+        iniciarQuizBtn.textContent = 'Erro ao Carregar';
+        console.error("Não foi possível carregar as perguntas da API.");
     }
 })();
